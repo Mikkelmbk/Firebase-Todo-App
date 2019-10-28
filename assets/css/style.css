@@ -1,0 +1,6 @@
+@import url(variable-styling.css);
+
+body{
+	background-color: var(--body-bg-color);
+	margin:0;
+}
