@@ -8,6 +8,9 @@
 	<link rel="stylesheet" href="assets/css/style.css">
 	<!-- The core Firebase JS SDK is always required and must be listed first -->
 	<script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-firestore.js"></script>
 	<title>Document</title>
 
 </head>
@@ -15,26 +18,33 @@
 <body>
 
 
+	<h1 class="todoTitle">Todo App</h1>
+
+	<form id="add-todo">
+			<div>
+			  <label>Titel:</label>
+			  <input type="text" name="title" />
+			</div>
+			<div>
+			  <label>Indhold</label>
+			  <textarea name="content"></textarea>
+			</div>
+			<div>
+			  <label>Afsluttet?</label>
+			  <input type="checkbox" name="done" />
+			</div>
+			<button>Opret</button>
+		  </form>	
+
+
+
+	<ul id="todos"></ul>
 
 
 
 
-	<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-	<script>
-		// Your web app's Firebase configuration
-		var firebaseConfig = {
-			apiKey: "AIzaSyCSg3TdChazPCF5mQZx4zKyedeRglNeVrg",
-			authDomain: "mytodoapp-bf38f.firebaseapp.com",
-			databaseURL: "https://mytodoapp-bf38f.firebaseio.com",
-			projectId: "mytodoapp-bf38f",
-			storageBucket: "mytodoapp-bf38f.appspot.com",
-			messagingSenderId: "952967961983",
-			appId: "1:952967961983:web:fc7770f308b196c0134e4a"
-		};
-		// Initialize Firebase
-		firebase.initializeApp(firebaseConfig);
-	</script>
+
+
 	<script src="assets/js/index.js"></script>
 </body>
 
