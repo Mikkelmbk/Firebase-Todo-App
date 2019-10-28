@@ -103,14 +103,24 @@ form.addEventListener('submit', (event) => {
 db.collection("todos").onSnapshot((snapshot) => {
     let changes = snapshot.docChanges();
     changes.forEach((change) => {
+        // console.log(change.type);
         if (change.type == "added") {
             renderTodo(change.doc);
         }
         else if (change.type == "removed") {
-            // let li:any = todos.querySelector(`[data-id=${change.doc.id}]`);
+            // let li:any = todos.querySelector(`[data-id="${change.doc.id}"]`);
             todos.childNodes.forEach((li) => {
                 if (li.dataset["id"] == change.doc.id) {
                     todos.removeChild(li);
+                }
+            });
+        }
+        else if (change.type == "modified") {
+            todos.childNodes.forEach((li) => {
+                if (li.dataset["id"] == change.doc.id) {
+                    // console.log(li.dataset["id"])
+                    let checkboxTest = document.querySelector(`li [type=checkbox]`);
+                    console.log(checkboxTest);
                 }
             });
         }
