@@ -11,41 +11,97 @@
 	<!-- The core Firebase JS SDK is always required and must be listed first -->
 	<script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-firestore.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
 	<title>Document</title>
 
 </head>
 
 <body>
 
+	<div class="page1-wrapper">
 
-	<h1 class="todoTitle">Todo App</h1>
+		<h1 class="todoTitle">Todo App</h1>
 
-	<form id="add-todo">
+		<form id="add-todo">
 			<div>
-			  <label>Titel:</label>
-			  <input type="text" name="title" />
+				<label>Titel:</label>
+				<input type="text" name="title" />
 			</div>
 			<div>
-			  <label>Indhold</label>
-			  <textarea name="content"></textarea>
+				<label>Indhold</label>
+				<textarea name="content"></textarea>
 			</div>
 			<div>
-			  <label>Afsluttet?</label>
-			  <input type="checkbox" name="done" />
+				<label>Afsluttet?</label>
+				<input type="checkbox" name="done" />
 			</div>
 			<button>Opret</button>
-		  </form>	
+		</form>
 
 
 
-	<ul id="todos"></ul>
+		<ul id="todos"></ul>
+
+	</div>
+
+	<div class="page2-wrapper">
+
+		<div>
+			<form id="login-form">
+				<div>
+					<label>Email:</label>
+					<input type="text" class="Email" name="Email">
+				</div>
+				<div>
+					<label>Password:</label>
+					<input type="password" class="Password" name="Password">
+				</div>
+				<button class="login-btn">Login</button>
+			</form>
+			<span class="form-error-message"></span>
+		</div>
+
+
+		<div>
+			<button class="logout-btn">Logout</button>
+
+		</div>
+
+
+	</div>
+
+	<div class="page3-wrapper">
+
+		<div>
+			<form id="signup-form">
+				<div>
+					<label>Email:</label>
+					<input type="text" class="Email" name="Email">
+				</div>
+				<div>
+					<label>Password:</label>
+					<input type="password" class="Password" name="Password">
+				</div>
+				<div>
+					<label>Repeat Password:</label>
+					<input type="password" class="repeat-Password" name="repeatPassword">
+				</div>
+				<button class="signup-btn">Signup</button>
+			</form>
+			<span class="signup-error-message"></span>
+		</div>
+	</div>
 
 
 
 
 
 
+
+
+	<script src="assets/js/module-control.js"></script>
 	<script src="assets/js/index.js"></script>
+	<script src="assets/js/auth.js"></script>
 </body>
 
 </html>
