@@ -1,3 +1,4 @@
+// Login section starter
 const loginForm = document.querySelector('#login-form');
 let formErrorMessage = document.querySelector('.form-error-message');
 loginForm.addEventListener('submit', (event) => {
@@ -22,6 +23,10 @@ logoutBtn.addEventListener('click', () => {
 			console.log("Brugeren er logget af");
 		});
 });
+
+// Login section slutter
+
+// Signup section starter
 
 const signupForm = document.querySelector('#signup-form');
 let signupErrorMessage = document.querySelector('.signup-error-message');
@@ -85,6 +90,10 @@ signupForm.addEventListener('submit', (event) => {
 	}
 })
 
+//Signup section slutter
+
+//Admin section starter
+
 const adminForm = document.querySelector('#admin-form');
 
 adminForm.addEventListener('submit', (event) => {
@@ -101,6 +110,9 @@ adminForm.addEventListener('submit', (event) => {
 		})
 })
 
+//Admin section slutter
+
+//Opdatering af siden baseret på om en bruger er logget på eller ej starter
 
 auth.onAuthStateChanged((user) => {
 	// console.log("This is User:", user)
@@ -182,6 +194,8 @@ auth.onAuthStateChanged((user) => {
 
 }
 )
+
+//Opdatering af siden baseret på om en bruger er logget på eller ej slutter
 
 
 

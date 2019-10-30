@@ -7,6 +7,7 @@
 // 			console.log(doc.data());
 // 		});
 // 	});
+
 const todos = document.querySelector('#todos');
 function renderTodo(doc) {
 
