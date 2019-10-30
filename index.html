@@ -12,6 +12,7 @@
 	<script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-firestore.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-functions.js"></script>
 	<title>Document</title>
 
 </head>
@@ -20,7 +21,7 @@
 
 	<div class="page1-wrapper">
 
-		<h1 class="todoTitle">Todo App</h1>
+		<h1 class="todoTitle">Todo Apps</h1>
 
 		<form id="add-todo">
 			<div>
@@ -45,6 +46,8 @@
 	</div>
 
 	<div class="page2-wrapper">
+
+		<h1>Login side</h1>
 
 		<div>
 			<form id="login-form">
@@ -77,6 +80,14 @@
 	<div class="page3-wrapper">
 
 		<div>
+			<h1>Opret Bruger side</h1>
+			<div class="oprettelses-info">
+				<p>Rød baggrund hvis manglende tekst</p>
+				<p>Orange baggrund hvis passwords ikke stemmer overens</p>
+			</div>
+		</div>
+
+		<div>
 			<form id="signup-form">
 				<div>
 					<label>Fulde Navn:</label>
@@ -98,6 +109,22 @@
 			</form>
 			<span class="signup-error-message"></span>
 		</div>
+	</div>
+
+
+	<div class="page4-wrapper">
+
+
+		<h1>Gør bruger til Admin side</h1>
+
+		<form id="admin-form">
+			<div>
+				<label>Email:</label>
+				<input type="text" class="admin-email" name="adminEmail">
+			</div>
+			<button class="make-admin-btn">Make Admin</button>
+		</form>
+		<p class="admin-message"></p>
 	</div>
 
 

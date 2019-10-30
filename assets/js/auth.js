@@ -7,7 +7,7 @@ loginForm.addEventListener('submit', (event) => {
 	const password = loginForm.Password.value;
 	auth.signInWithEmailAndPassword(email, password)
 		.then((cred) => {
-			console.log(cred);
+			// console.log(cred);
 			loginForm.reset();
 		})
 		.catch((err) => {
@@ -69,7 +69,7 @@ signupForm.addEventListener('submit', (event) => {
 
 		auth.createUserWithEmailAndPassword(email, password)
 			.then((cred) => {
-				console.log(cred);
+				console.log("This is Credentials", cred);
 				return db.collection('users').doc(cred.user.uid).set({
 					fullname: name
 				})
@@ -85,55 +85,103 @@ signupForm.addEventListener('submit', (event) => {
 	}
 })
 
+const adminForm = document.querySelector('#admin-form');
+
+adminForm.addEventListener('submit', (event) => {
+	event.preventDefault();
+	const email = adminForm.adminEmail.value
+	const addAdminRole = functions.httpsCallable('addAdminRole'); // reference til server funktionen
+
+	addAdminRole({ email: email }) // Kalder funktionen på serveren med et objekt hvor propertien Email indeholder den Email der blev tastet.
+		.then((result) => {
+			document.querySelector('.admin-message').innerHTML = result.data.message;
+		})
+		.catch((err) => {
+			console.log("This is an Error", err);
+		})
+})
+
+
 auth.onAuthStateChanged((user) => {
-	console.log("This is User:", user)
+	// console.log("This is User:", user)
+
+	let wrapper1 = document.querySelector('.page1-wrapper');
+	let wrapper2 = document.querySelector('.page2-wrapper');
+	let wrapper3 = document.querySelector('.page3-wrapper');
+	let wrapper4 = document.querySelector('.page4-wrapper');
+
 	if (user != null) {
-		db.collection("todos").onSnapshot((snapshot) => {
-			let changes = snapshot.docChanges();
-			changes.forEach((change) => {
-				if (change.type == "added") {
-					renderTodo(change.doc);
-				}
-				else if (change.type == "removed") {
-					let li = todos.querySelector(`[data-id="${change.doc.id}"]`);
-					todos.removeChild(li);
-				}
-				else if (change.type == "modified") {
-					todos.childNodes.forEach((li) => {
-						if (li.dataset["id"] == change.doc.id) {
-							let checkboxTest = document.querySelector(`li [type=checkbox]`);
-						}
-					});
-				}
+		user.getIdTokenResult().then((idTokenResult) => {
+			// console.log("This is Claims", idTokenResult.claims);
+			user.admin = idTokenResult.claims.admin; // tag fat i user objektet og lav admin propertien, tildel så admin propertien den værdi som findes i userens claims i admin propertien, true
+
+
+			db.collection("todos").onSnapshot((snapshot) => {
+				let changes = snapshot.docChanges();
+				changes.forEach((change) => {
+					if (change.type == "added") {
+						renderTodo(change.doc);
+					}
+					else if (change.type == "removed") {
+						let li = todos.querySelector(`[data-id="${change.doc.id}"]`);
+						todos.removeChild(li);
+					}
+					else if (change.type == "modified") {
+						todos.childNodes.forEach((li) => {
+							if (li.dataset["id"] == change.doc.id) {
+								let checkboxTest = document.querySelector(`li [type=checkbox]`);
+							}
+						});
+					}
+				});
+			}, (error) => {
+				console.log(error.message)
 			});
-		}, (error) => {
-			console.log(error.message)
-		});
 
-		db.collection('users').doc(user.uid).get()
-			.then((doc) => {
-				if (doc.data().fullname) {
-					document.querySelector('.full-name').innerHTML = doc.data().fullname;
-					document.querySelector('.user-email').innerHTML = user.email;
+			db.collection('users').doc(user.uid).get()
+				.then((doc) => {
+					if (doc.data().fullname) {
+						document.querySelector('.full-name').innerHTML = doc.data().fullname;
+						document.querySelector('.user-email').innerHTML = user.email;
 
-				}
-			})
+					}
+				})
 
-		loginForm.classList.add('hidden');
-		signupForm.classList.add('hidden');
-		logoutBtn.classList.remove('hidden');
-		form.classList.remove('hidden');
+				wrapper1.style.order = 0;
+				wrapper4.style.order = 2;
+				wrapper3.style.order = 3;
+				wrapper2.style.order = 1;
+
+			loginForm.classList.add('hidden');
+			signupForm.classList.add('hidden');
+			logoutBtn.classList.remove('hidden');
+			form.classList.remove('hidden');
+			document.querySelector('.oprettelses-info').classList.add('hidden');
+			if(user.admin != undefined && user.admin == true){
+				adminForm.classList.remove('hidden');
+				wrapper2.style.order = 2;
+				wrapper4.style.order = 1;
+				
+			}
+
+
+		})
 	}
 	else {
 
 		document.querySelector('.full-name').innerHTML = "";
 		document.querySelector('.user-email').innerHTML = "";
+		document.querySelector('.oprettelses-info').classList.remove('hidden');
 		loginForm.classList.remove('hidden');
 		signupForm.classList.remove('hidden');
 		logoutBtn.classList.add('hidden');
 		form.classList.add('hidden');
+		adminForm.classList.add('hidden');
 		todos.innerHTML = "";
 	}
 
 }
 )
+
+
+

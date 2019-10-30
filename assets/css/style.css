@@ -1,12 +1,17 @@
 @import url(variable-styling.css);
 
 body{
-	background-color: var(--body-bg-color);
 	margin:0;
+	display:flex;
+	flex-direction:column;
 }
 
 .page1-wrapper{
+	background-color: var(--body-bg-color);
 	min-height: var(--page-height);
+	display:flex;
+	justify-content:space-evenly;
+	align-items:center;
 }
 
 .page2-wrapper{
@@ -15,12 +20,20 @@ body{
 	display:flex;
 	justify-content:space-evenly;
 	align-items:center;
-	/* flex-direction:column; */
 }
 
 .page3-wrapper{
 	min-height: var(--page-height);
 	background-color:turquoise;
+	display:flex;
+	justify-content:space-evenly;
+	align-items:center;
+}
+
+
+.page4-wrapper{
+	min-height: var(--page-height);
+	background-color:purple;
 	display:flex;
 	justify-content:space-evenly;
 	align-items:center;
