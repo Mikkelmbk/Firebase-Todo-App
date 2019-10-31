@@ -117,10 +117,10 @@ adminForm.addEventListener('submit', (event) => {
 auth.onAuthStateChanged((user) => {
 	// console.log("This is User:", user)
 
-	let wrapper1 = document.querySelector('.page1-wrapper');
-	let wrapper2 = document.querySelector('.page2-wrapper');
-	let wrapper3 = document.querySelector('.page3-wrapper');
-	let wrapper4 = document.querySelector('.page4-wrapper');
+	// let wrapper1 = document.querySelector('.page1-wrapper');
+	// let wrapper2 = document.querySelector('.page2-wrapper');
+	// let wrapper3 = document.querySelector('.page3-wrapper');
+	// let wrapper4 = document.querySelector('.page4-wrapper');
 
 	if (user != null) {
 		user.getIdTokenResult().then((idTokenResult) => {
@@ -159,10 +159,10 @@ auth.onAuthStateChanged((user) => {
 					}
 				})
 
-				wrapper1.style.order = 0;
-				wrapper4.style.order = 2;
-				wrapper3.style.order = 3;
-				wrapper2.style.order = 1;
+				// wrapper1.style.order = 0;
+				// wrapper4.style.order = 2;
+				// wrapper3.style.order = 3;
+				// wrapper2.style.order = 1;
 
 			loginForm.classList.add('hidden');
 			signupForm.classList.add('hidden');
@@ -171,8 +171,8 @@ auth.onAuthStateChanged((user) => {
 			document.querySelector('.oprettelses-info').classList.add('hidden');
 			if(user.admin != undefined && user.admin == true){
 				adminForm.classList.remove('hidden');
-				wrapper2.style.order = 2;
-				wrapper4.style.order = 1;
+				// wrapper2.style.order = 2;
+				// wrapper4.style.order = 1;
 				
 			}
 
